@@ -1,0 +1,11 @@
+both need to be set explicity in the database.
+
+snapshot isolation level
+ - reads are got from latest commited version in the version store but it does not see data comitted after transaction started.
+ - writes: if a snapshot transaction started then a sql statement tried to update data that was updated in the snapshot transaction, the sql statement is rolledback with 3960.
+ - [TEST]: try editing data locked by this transaction.  < = = =
+
+read committed snapshot.
+ - writes: same write behaviour as read committed (aquires U and X locks on the row)
+ - reads: get last comitted value from version store instead of aquiring shared lock.
+ - this vs read-uncommitted mode: this does not read un-committed data.

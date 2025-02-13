@@ -1,0 +1,1 @@
+ALTER DATABASE CarRefinish SET READ_COMMITTED_SNAPSHOT ON with rollback after 1 seconds

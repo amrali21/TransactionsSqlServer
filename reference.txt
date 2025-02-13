@@ -1,0 +1,2 @@
+Expert SQL Server Transactions and Locking Concurrency INternals for sql server paractiontioners
+Dimitry Korotkevitch

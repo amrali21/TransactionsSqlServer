@@ -1,0 +1,8 @@
+this transaction checks is there is enough balance then withdraws amount from bank account.
+
+- the transaction starts with an update statement to aquire an exclusive lock on the row to prevent read or write and prevent inconsistency.
+- next step is to check if balance is enough after withdrawal. if it is the transaction commits. if not, it rolls back.
+- if you try to run 2 sessions of this transaction in parallel, the first session to start the update statement will complete first.
+
+notes:
+- transaction isolation level is read committed, but any other pessimistic isolation level will work in this case because they all aquire exclusive lock on update.

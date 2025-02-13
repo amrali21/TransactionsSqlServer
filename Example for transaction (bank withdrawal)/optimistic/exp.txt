@@ -1,0 +1,9 @@
+this transaction checks is there is enough balance then withdraws amount from bank account.
+
+- the transaction starts with an update statement to aquire an exclusive lock on the row to prevent read or write and prevent inconsistency.
+- next step is to check if balance is enough after withdrawal. if it is the transaction commits. if not, it rolls back.
+- if you try to run 2 sessions of this transaction in parallel, the first session to start the update statement will complete and other sessions will be locked, then will give
+back a 3960 error and exit.
+
+notes:
+- transaction isolation level is snapshot. this is used here to handle the case if multiple users try to withdraw from same account at the same time. it allows first user to complete the transaction and returns 3960 error to all other users letting them know there is an update confilict. (a retry in the code can be made in the code depending on bussiness case)
