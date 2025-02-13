@@ -6,3 +6,4 @@ this transaction checks is there is enough balance then withdraws amount from ba
 
 notes:
 - transaction isolation level is read committed, but any other pessimistic isolation level will work in this case because they all aquire exclusive lock on update.
+- when updating the record, an exclusive lock is put on the row preventing read or write. to reduce blocking, we could allow reading the row (from version store) using read committed snapshot optimistic locking
